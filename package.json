@@ -1,0 +1,23 @@
+{
+  "name": "frontend-project-lvl1",
+  "version": "1.0.0",
+  "description": "'frontent project level 1'",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "frontend-project-lvl1": "brain-games.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/me-lana-dev/frontend-project-lvl1.git"
+  },
+  "author": "Lana Kaliush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/me-lana-dev/frontend-project-lvl1/issues"
+  },
+  "homepage": "https://github.com/me-lana-dev/frontend-project-lvl1#readme"
+}
