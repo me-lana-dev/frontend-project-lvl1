@@ -1,11 +1,11 @@
 {
-  "name": "frontend-project-lvl1",
+  "name": "kaliush-frontend-lvl1",
   "version": "1.0.0",
   "description": "'frontent project level 1'",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "frontend-project-lvl1": "brain-games.js"
+    "brain-games": "bin/brain-games.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
