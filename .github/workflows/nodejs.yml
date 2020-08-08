@@ -32,6 +32,10 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
  
+    # Install and build project
+    - name: npm install, build
+      run: make install
+
     # Runs a linter
     - name: Run linter
       run: |
