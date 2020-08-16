@@ -10,6 +10,7 @@ const questionGcd = (numFirst, numSecond) => {
       gcd = i;
     }
   }
+  console.log(`подсказка ${gcd}`);
   return String(gcd);
 };
 
