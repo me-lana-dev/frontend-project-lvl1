@@ -1,10 +1,6 @@
 import readlineSync from 'readline-sync';
 
-const numGenerate = () => {
-  const numMinRange = 5;
-  const numMaxRange = 21;
-  return Math.floor(Math.random() * (numMaxRange - numMinRange + 1) + numMinRange);
-};
+import { userName, numGenerate } from '../index.js';
 
 const checkEven = (num) => {
   if ((num % 2) === 0) {
@@ -25,11 +21,10 @@ const checkAnswer = (answer) => {
 
 export default () => {
   console.log('Welcome to the Brain Games!');
-
-  const questionName = readlineSync.question('May I have your name?: ');
+  const questionName = userName();
   console.log(`Hello, ${questionName}!`);
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
   const countQuestion = 3;
 
   for (let i = 0; i < countQuestion; i += 1) {
