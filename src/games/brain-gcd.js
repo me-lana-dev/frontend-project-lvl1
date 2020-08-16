@@ -10,7 +10,6 @@ const questionGcd = (numFirst, numSecond) => {
       gcd = i;
     }
   }
-  //console.log(gcd);
   return String(gcd);
 };
 
