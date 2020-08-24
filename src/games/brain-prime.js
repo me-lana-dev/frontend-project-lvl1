@@ -2,11 +2,20 @@ import readlineSync from 'readline-sync';
 
 import { userName, numGenerate, checkAnswer } from '../index.js';
 
-const checkEven = (num) => {
-  if ((num % 2) === 0) {
-    return true;
+const checkPrime = (num) => {
+  let count = 0;
+  if (num < 2) {
+    return false;
   }
-  return false;
+  for (let i = 2; i < num; i += 1) {
+    if ((num % i) === 0) {
+      count += 1;
+    }
+  }
+  if (count > 0) {
+    return false;
+  }
+  return true;
 };
 
 export default () => {
@@ -14,25 +23,25 @@ export default () => {
   const questionName = userName();
   console.log(`Hello, ${questionName}!`);
 
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
   const countQuestion = 3;
 
   for (let i = 0; i < countQuestion; i += 1) {
     const numGenerated = numGenerate();
-    const isEven = checkEven(numGenerated);
+    const isPrime = checkPrime(numGenerated);
     console.log(`Question: ${numGenerated}`);
-    const questionEven = readlineSync.question('Your answer: ', {
+    const questionPrime = readlineSync.question('Your answer: ', {
       trueValue: ['yes'],
       falseValue: ['no'],
     });
 
-    if (isEven === true && questionEven === true) {
+    if (isPrime === true && questionPrime === true) {
       console.log('Correct!');
-    } else if (isEven === false && questionEven === false) {
+    } else if (isPrime === false && questionPrime === false) {
       console.log('Correct!');
     } else {
-      const answerWrong = checkAnswer(questionEven);
-      const answerCorrect = (isEven) ? 'yes' : 'no';
+      const answerWrong = checkAnswer(questionPrime);
+      const answerCorrect = (isPrime) ? 'yes' : 'no';
       const result = `"${answerWrong}" is wrong answer ;(. Correct answer was "${answerCorrect}".\nLet's try again, ${questionName}!`;
       return result;
     }

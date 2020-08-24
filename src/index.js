@@ -10,3 +10,13 @@ export const userName = () => {
   const questionName = readlineSync.question('May I have your name?: ');
   return questionName;
 };
+
+export const checkAnswer = (answer) => {
+  if (answer === true) {
+    return 'yes';
+  }
+  if (answer === false) {
+    return 'no';
+  }
+  return answer;
+};
