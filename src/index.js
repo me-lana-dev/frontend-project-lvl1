@@ -1,8 +1,8 @@
 import readlineSync from 'readline-sync';
 
 export const numGenerate = () => {
-  const numMinRange = 5;
-  const numMaxRange = 21;
+  const numMinRange = 0;
+  const numMaxRange = 9;
   return Math.floor(Math.random() * (numMaxRange - numMinRange + 1) + numMinRange);
 };
 
