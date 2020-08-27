@@ -1,6 +1,4 @@
-import readlineSync from 'readline-sync';
-
-import { userName, numGenerate } from '../index.js';
+import { numGenerate, runGameEngine } from '../index.js';
 
 const operatorGenerate = () => {
   const setOperators = '+*-';
@@ -24,31 +22,19 @@ const calculation = (numFirst, operator, numSecond) => {
   return String(result);
 };
 
-export default () => {
-  console.log('Welcome to the Brain Games!');
-  const questionName = userName();
-  console.log(`Hello, ${questionName}!`);
+const conditionGame = 'What is the result of the expression?';
 
-  console.log('What is the result of the expression?');
-  const countQuestion = 3;
-
-  for (let i = 0; i < countQuestion; i += 1) {
-    const firstNumGenerated = numGenerate();
-    const secondNumGenerated = numGenerate();
-    const randomOperator = operatorGenerate();
-    const resultCalculation = calculation(firstNumGenerated, randomOperator, secondNumGenerated);
-
-    console.log(`Question: ${firstNumGenerated} ${randomOperator} ${secondNumGenerated}`);
-
-    const questionCalc = readlineSync.question('Your answer: ');
-
-    if (questionCalc === resultCalculation) {
-      console.log('Correct!');
-    } else {
-      const result = `"${questionCalc}" is wrong answer ;(. Correct answer was "${resultCalculation}".\nLet's try again, ${questionName}!`;
-      return result;
-    }
-  }
-
-  return `Congratulations, ${questionName}!`;
+const getGameData = () => {
+  const firstNumGenerated = numGenerate();
+  const secondNumGenerated = numGenerate();
+  const randomOperator = operatorGenerate();
+  const correctAnswer = calculation(firstNumGenerated, randomOperator, secondNumGenerated);
+  const taskGame = `${firstNumGenerated} ${randomOperator} ${secondNumGenerated}`;
+  return { taskGame, correctAnswer };
 };
+
+function runGame() {
+  return runGameEngine(conditionGame, getGameData);
+}
+
+export default runGame;

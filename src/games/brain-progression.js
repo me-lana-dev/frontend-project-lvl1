@@ -1,6 +1,4 @@
-import readlineSync from 'readline-sync';
-
-import { userName, numGenerate } from '../index.js';
+import { numGenerate, runGameEngine } from '../index.js';
 
 const progressionGenerate = () => {
   const result = [];
@@ -20,31 +18,18 @@ const questionGenerate = (progression, indexProgression) => {
   return tempProgression.join(' ');
 };
 
-export default () => {
-  console.log('Welcome to the Brain Games!');
-  const questionName = userName();
-  console.log(`Hello, ${questionName}!`);
+const conditionGame = 'What number is missing in the progression?';
 
-  console.log('What number is missing in the progression?');
-  const countQuestion = 3;
-
-  for (let i = 0; i < countQuestion; i += 1) {
-    const progression = progressionGenerate();
-    const indexProgression = numGenerate();
-
-    const correctAnswer = String(progression[indexProgression]);
-    const progressionDots = questionGenerate(progression, indexProgression);
-
-    console.log(`Question: ${progressionDots}`);
-    const yourAnswer = readlineSync.question('Your answer: ');
-
-    if (correctAnswer === yourAnswer) {
-      console.log('Correct!');
-    } else {
-      const result = `"${yourAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${questionName}!`;
-      return result;
-    }
-  }
-
-  return `Congratulations, ${questionName}!`;
+const getGameData = () => {
+  const progression = progressionGenerate();
+  const indexProgression = numGenerate();
+  const correctAnswer = String(progression[indexProgression]);
+  const taskGame = questionGenerate(progression, indexProgression);
+  return { taskGame, correctAnswer };
 };
+
+function runGame() {
+  return runGameEngine(conditionGame, getGameData);
+}
+
+export default runGame;

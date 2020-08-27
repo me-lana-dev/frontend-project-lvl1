@@ -1,11 +1,9 @@
-import readlineSync from 'readline-sync';
-
-import { userName, numGenerate, checkAnswer } from '../index.js';
+import { numGenerate, runGameEngine } from '../index.js';
 
 const checkPrime = (num) => {
   let count = 0;
   if (num < 2) {
-    return false;
+    return 'no';
   }
   for (let i = 2; i < num; i += 1) {
     if ((num % i) === 0) {
@@ -13,39 +11,22 @@ const checkPrime = (num) => {
     }
   }
   if (count > 0) {
-    return false;
+    return 'no';
   }
-  return true;
+  return 'yes';
 };
 
-export default () => {
-  console.log('Welcome to the Brain Games!');
-  const questionName = userName();
-  console.log(`Hello, ${questionName}!`);
+const conditionGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-  const countQuestion = 3;
-
-  for (let i = 0; i < countQuestion; i += 1) {
-    const numGenerated = numGenerate();
-    const isPrime = checkPrime(numGenerated);
-    console.log(`Question: ${numGenerated}`);
-    const questionPrime = readlineSync.question('Your answer: ', {
-      trueValue: ['yes'],
-      falseValue: ['no'],
-    });
-
-    if (isPrime === true && questionPrime === true) {
-      console.log('Correct!');
-    } else if (isPrime === false && questionPrime === false) {
-      console.log('Correct!');
-    } else {
-      const answerWrong = checkAnswer(questionPrime);
-      const answerCorrect = (isPrime) ? 'yes' : 'no';
-      const result = `"${answerWrong}" is wrong answer ;(. Correct answer was "${answerCorrect}".\nLet's try again, ${questionName}!`;
-      return result;
-    }
-  }
-
-  return `Congratulations, ${questionName}!`;
+const getGameData = () => {
+  const numGenerated = numGenerate();
+  const correctAnswer = checkPrime(numGenerated);
+  const taskGame = numGenerated;
+  return { taskGame, correctAnswer };
 };
+
+function runGame() {
+  return runGameEngine(conditionGame, getGameData);
+}
+
+export default runGame;
