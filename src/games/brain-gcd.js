@@ -1,4 +1,5 @@
-import { numGenerate, runGameEngine } from '../index.js';
+import { runGameEngine } from '../index.js';
+import getRandom from '../utils/get-random.js';
 
 const questionGcd = (numFirst, numSecond) => {
   const count = (numFirst >= numSecond) ? numFirst : numSecond;
@@ -14,8 +15,10 @@ const questionGcd = (numFirst, numSecond) => {
 const conditionGame = 'Find the greatest common divisor of given numbers.';
 
 const getGameData = () => {
-  const firstNumGenerated = numGenerate();
-  const secondNumGenerated = numGenerate();
+  const numMinRange = 3;
+  const numMaxRange = 15;
+  const firstNumGenerated = getRandom(numMinRange, numMaxRange);
+  const secondNumGenerated = getRandom(numMinRange, numMaxRange);
   const correctAnswer = questionGcd(firstNumGenerated, secondNumGenerated);
   const taskGame = `${firstNumGenerated} ${secondNumGenerated}`;
   return { taskGame, correctAnswer };

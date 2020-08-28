@@ -1,4 +1,5 @@
-import { numGenerate, runGameEngine } from '../index.js';
+import { runGameEngine } from '../index.js';
+import getRandom from '../utils/get-random.js';
 
 const checkEven = (num) => {
   if ((num % 2) === 0) {
@@ -10,7 +11,9 @@ const checkEven = (num) => {
 const conditionGame = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 const getGameData = () => {
-  const numGenerated = numGenerate();
+  const numMinRange = 2;
+  const numMaxRange = 100;
+  const numGenerated = getRandom(numMinRange, numMaxRange);
   const correctAnswer = checkEven(numGenerated);
   const taskGame = numGenerated;
   return { taskGame, correctAnswer };

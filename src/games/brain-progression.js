@@ -1,4 +1,5 @@
-import { numGenerate, runGameEngine } from '../index.js';
+import { runGameEngine } from '../index.js';
+import getRandom from '../utils/get-random.js';
 
 const progressionGenerate = () => {
   const result = [];
@@ -21,8 +22,10 @@ const questionGenerate = (progression, indexProgression) => {
 const conditionGame = 'What number is missing in the progression?';
 
 const getGameData = () => {
+  const numMinRange = 0;
+  const numMaxRange = 9;
   const progression = progressionGenerate();
-  const indexProgression = numGenerate();
+  const indexProgression = getRandom(numMinRange, numMaxRange);
   const correctAnswer = String(progression[indexProgression]);
   const taskGame = questionGenerate(progression, indexProgression);
   return { taskGame, correctAnswer };

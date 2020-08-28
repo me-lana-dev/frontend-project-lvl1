@@ -1,4 +1,5 @@
-import { numGenerate, runGameEngine } from '../index.js';
+import { runGameEngine } from '../index.js';
+import getRandom from '../utils/get-random.js';
 
 const operatorGenerate = () => {
   const setOperators = '+*-';
@@ -25,8 +26,10 @@ const calculation = (numFirst, operator, numSecond) => {
 const conditionGame = 'What is the result of the expression?';
 
 const getGameData = () => {
-  const firstNumGenerated = numGenerate();
-  const secondNumGenerated = numGenerate();
+  const numMinRange = 0;
+  const numMaxRange = 10;
+  const firstNumGenerated = getRandom(numMinRange, numMaxRange);
+  const secondNumGenerated = getRandom(numMinRange, numMaxRange);
   const randomOperator = operatorGenerate();
   const correctAnswer = calculation(firstNumGenerated, randomOperator, secondNumGenerated);
   const taskGame = `${firstNumGenerated} ${randomOperator} ${secondNumGenerated}`;

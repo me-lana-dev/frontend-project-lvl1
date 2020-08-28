@@ -1,4 +1,5 @@
-import { numGenerate, runGameEngine } from '../index.js';
+import { runGameEngine } from '../index.js';
+import getRandom from '../utils/get-random.js';
 
 const checkPrime = (num) => {
   let count = 0;
@@ -19,7 +20,9 @@ const checkPrime = (num) => {
 const conditionGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const getGameData = () => {
-  const numGenerated = numGenerate();
+  const numMinRange = 2;
+  const numMaxRange = 17;
+  const numGenerated = getRandom(numMinRange, numMaxRange);
   const correctAnswer = checkPrime(numGenerated);
   const taskGame = numGenerated;
   return { taskGame, correctAnswer };
