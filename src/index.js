@@ -1,7 +1,7 @@
 import readlineSync from 'readline-sync';
 
 export const checkAnswer = (answer) => {
-  const result = (answer === true) ? 'yes' : 'no';
+  const result = answer ? 'yes' : 'no';
   return result;
 };
 
